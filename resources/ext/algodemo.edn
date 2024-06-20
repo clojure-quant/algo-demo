@@ -7,4 +7,9 @@
                    algodemo.sma-crossover.template/eodhd-eod
                    algodemo.ut-bot-alerts.template/template
                    algodemo.linear-regression-candles.template/template
-                   algodemo.multi-ma.template/multi-ma]}
+                   algodemo.multi-ma.template/multi-ma
+                   ; algos that produce an error (for testing purposes)
+                   algodemo.error.template/error-compile-algo
+                   algodemo.error.template/error-runtime-algo
+
+                   ]}
