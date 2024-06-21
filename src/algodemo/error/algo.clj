@@ -3,6 +3,6 @@
    [taoensso.timbre :refer [info warn error]]))
 
 (defn error-algo [_env opts bar-ds]
-  (warn "running error-algo: trailing-n: " (:trailing-n opts) " asset: " (:asset opts))
-  (throw (Exception. "runtime algo-calc exception!")))
+  (info "running error-algo: trailing-n: " (:trailing-n opts) " asset: " (:asset opts))
+  (throw (Exception. "intentional error exception!")))
 
