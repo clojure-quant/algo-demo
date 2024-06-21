@@ -1,4 +1,4 @@
-(ns algodemo.asset-compare.spec
+(ns quanta.notebook.study.asset-compare
   (:require
    [taoensso.timbre :refer [trace debug info warn error]]
    [tablecloth.api :as tc]

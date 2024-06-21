@@ -1,4 +1,4 @@
-(ns  algodemo.sma-crossover.single-asset
+(ns  quanta.notebook.study.sma-crossover-single-asset
   (:require
    [tick.core :as t]
    [ta.calendar.core :as cal]

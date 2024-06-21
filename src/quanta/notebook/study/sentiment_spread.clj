@@ -1,4 +1,4 @@
-(ns algodemo.sentiment-spread.study
+(ns quanta.notebook.study.sentiment-spread
   "Sentiment Spreads
   Backtest of a strategy described in 
   https://cssanalytics.wordpress.com/2010/09/19/creating-an-ensemble-intermarket-spy-model-with-etf-rewinds-sentiment-spreads/

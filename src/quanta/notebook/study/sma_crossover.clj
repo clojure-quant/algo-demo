@@ -1,11 +1,11 @@
-(ns  algodemo.sma
+(ns  quanta.notebook.study.sma-crossover
   (:require
    [ta.backtest.study :refer [run-study]]
    [ta.trade.roundtrip-backtest :refer [run-backtest run-backtest-parameter-range]]
    [ta.trade.metrics.roundtrip-stats :as s]
    [ta.trade.print :as p]
-   [demo.algo.sma :refer [sma-signal]]
-   [ta.algo.buy-hold :refer [buy-hold-signal]]))
+   [ta.algo.buy-hold :refer [buy-hold-signal]]
+   [demo.algo.sma :refer [sma-signal]]))
 
 ;; daily backtest
 
