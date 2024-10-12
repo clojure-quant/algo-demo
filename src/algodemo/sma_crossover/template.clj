@@ -42,7 +42,7 @@
 
 
 (def sma-chart
-  {:viz 'ta.viz.ds.highchart/highstock-render-spec
+  {:viz plot/highstock
    :key :algo
    :viz-options {:chart {:box :fl}
                  :charts [{:bar :candlestick ; :ohlc ; :line 
@@ -62,7 +62,7 @@
                           #_{:volume :column}]}})
 
 (def sma-table
-  {:viz 'ta.viz.ds.rtable/rtable-render-spec
+  {:viz plot/agtable
    :key :algo
    :viz-options {:columns [{:path :date}
                            {:path :close}

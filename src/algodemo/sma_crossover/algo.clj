@@ -3,7 +3,7 @@
    [tablecloth.api :as tc]
    [quanta.algo.env.bars :refer [get-trailing-bars]]
    [ta.indicator :refer [sma]]
-   [ta.indicator.signal :refer [changed-signal-or]]))
+   [ta.indicator.signal :refer [cross-up cross-down changed-signal-or]]))
 
 (defn- calc-sma-signal [sma-st sma-lt]
   (if (and sma-st sma-lt)
@@ -19,10 +19,13 @@
         sma-st (sma {:n sma-length-st} price)
         sma-lt (sma {:n sma-length-lt} price)
         position (into [] (map calc-sma-signal sma-st sma-lt))
-        signal (changed-signal-or position :hold)]
+         ;(cross-up sma-st sma-lt)
+        signal (changed-signal-or position :hold)
+        
+        ]
     (tc/add-columns bar-ds {:sma-st sma-st
                             :sma-lt sma-lt
                             :position position
-                            :signal signal})))
+                            :entry signal})))
 
 
