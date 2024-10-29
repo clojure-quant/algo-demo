@@ -1,8 +1,7 @@
 (ns algodemo.sma-crossover.template
   (:require
-   [quanta.viz.plot :as plot]
    [quanta.trade.backtest :refer [backtest]]
-   [quanta.viz.plot.trade.core :refer [roundtrip-stats-ui]]
+   [quanta.dali.plot :as plot]
    [algodemo.sma-crossover.algo :refer [sma-crossover-algo]]))
 
 (def crossover-algo
@@ -42,7 +41,7 @@
 
 
 (def sma-chart
-  {:viz plot/highstock
+  {:viz plot/highstock-ds
    :key :algo
    :viz-options {:chart {:box :fl}
                  :charts [{:bar :candlestick ; :ohlc ; :line 
@@ -62,7 +61,7 @@
                           #_{:volume :column}]}})
 
 (def sma-table
-  {:viz plot/agtable
+  {:viz plot/agtable-ds
    :key :algo
    :viz-options {:columns [{:path :date}
                            {:path :close}
@@ -73,7 +72,7 @@
 
 (def sma-backtest 
   {:key :backtest
-   :viz roundtrip-stats-ui
+   :viz plot/backtest-ui-ds
    :viz-options {}}
   )
 
