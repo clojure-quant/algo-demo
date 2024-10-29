@@ -61,7 +61,7 @@
                           #_{:volume :column}]}})
 
 (def sma-table
-  {:viz plot/agtable-ds
+  {:viz plot/aggrid-ds
    :key :algo
    :viz-options {:columns [{:path :date}
                            {:path :close}
