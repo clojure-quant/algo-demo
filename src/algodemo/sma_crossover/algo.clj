@@ -12,10 +12,10 @@
       :else :hold)
     :hold))
 
-(defn sma-crossover-algo [{:keys [sma-length-st sma-length-lt] :as opts} bar-ds]
+(defn sma-crossover-algo [{:keys [sma-st sma-lt] :as opts} bar-ds]
   (let [price (:close bar-ds)
-        sma-st (sma {:n sma-length-st} price)
-        sma-lt (sma {:n sma-length-lt} price)
+        sma-st (sma {:n sma-st} price)
+        sma-lt (sma {:n sma-lt} price)
         position (into [] (map calc-sma-signal sma-st sma-lt))
          ;(cross-up sma-st sma-lt)
         signal (changed-signal-or position :hold)

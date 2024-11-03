@@ -6,38 +6,38 @@
    [algodemo.sma-crossover.algo :refer [sma-crossover-algo]]))
 
 (def crossover-algo
-  [{:asset "BTCUSDT"}
+  {:* {:asset "BTCUSDT"}
    :bars  {:calendar [:crypto :h]
            :fn get-trailing-bars
            :bardb :nippy
            :trailing-n 1440}
    :algo {:formula [:bars]
           :fn sma-crossover-algo
-          :sma-length-st 20
-          :sma-length-lt 200}
+          :sma-st 20
+          :sma-lt 200}
    :backtest {:formula [:algo]
               :fn backtest
               ; position management
               :entry [:fixed-amount 100000]
               :exit [:loss-percent 2.0
                      :profit-percent 1.0
-                     :time 5]}])
+                     :time 5]}})
 
 (def crossover-options
   [{:type :select
-    :path [0 :asset]
+    :path [:* :asset]
     :name "Asset"
     :spec ["BTCUSDT" "ETHUSDT"]}
    {:type :select
-    :path [2 :trailing-n]
+    :path [:bars :trailing-n]
     :name "trailing-n"
     :spec [100 300 500 1000 2000 3000 5000 10000]}
    {:type :select
-    :path [2 :sma-length-st]
+    :path [:algo :sma-st]
     :name "sma-st"
     :spec [10 20 50 100]}
    {:type :select
-    :path [2 :sma-length-lt]
+    :path [:algo :sma-lt]
     :name "sma-lt"
     :spec [100 200 500 1000]}])
 
