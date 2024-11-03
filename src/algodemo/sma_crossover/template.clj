@@ -2,19 +2,21 @@
   (:require
    [quanta.trade.backtest :refer [backtest]]
    [quanta.dali.plot :as plot]
+   [quanta.bar.env :refer [get-trailing-bars]]
    [algodemo.sma-crossover.algo :refer [sma-crossover-algo]]))
 
 (def crossover-algo
   [{:asset "BTCUSDT"}
-   :algo {:algo sma-crossover-algo
-          :calendar [:crypto :h]
-          :bardb :nippy
-          :trailing-n 1440
-          ; algo specific parameters
+   :bars  {:calendar [:crypto :h]
+           :fn get-trailing-bars
+           :bardb :nippy
+           :trailing-n 1440}
+   :algo {:formula [:bars]
+          :fn sma-crossover-algo
           :sma-length-st 20
           :sma-length-lt 200}
    :backtest {:formula [:algo]
-              :algo backtest
+              :fn backtest
               ; position management
               :entry [:fixed-amount 100000]
               :exit [:loss-percent 2.0
@@ -43,8 +45,8 @@
 (def sma-chart
   {:viz plot/highstock-ds
    :key :algo
-   :viz-options {:chart {:box :fl}
-                 :charts [{:bar :candlestick ; :ohlc ; :line 
+   :viz-options {:charts [{:bar {:type :ohlc
+                                 :mode :candle}
                            :close :line
                            :sma-lt :line
                            :sma-st :line
@@ -61,7 +63,7 @@
                           #_{:volume :column}]}})
 
 (def sma-table
-  {:viz plot/aggrid-ds
+  {:viz plot/rtable-ds
    :key :algo
    :viz-options {:columns [{:path :date}
                            {:path :close}
@@ -70,11 +72,10 @@
                            {:path :position}
                            {:path :signal}]}})
 
-(def sma-backtest 
+(def sma-backtest
   {:key :backtest
    :viz plot/backtest-ui-ds
-   :viz-options {}}
-  )
+   :viz-options {}})
 
 (def crossover-template
   {:id :sma-crossover
