@@ -65,6 +65,7 @@
 (def sma-table
   {:viz plot/rtable-ds
    :key :algo
+   :env? false
    :viz-options {:columns [{:path :date}
                            {:path :close}
                            {:path :sma-st}
