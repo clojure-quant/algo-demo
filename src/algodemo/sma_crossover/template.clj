@@ -1,6 +1,6 @@
 (ns algodemo.sma-crossover.template
   (:require
-   [quanta.trade.backtest :refer [backtest]]
+   [quanta.trade.backtest2 :as b2]
    [quanta.dali.plot :as plot]
    [quanta.bar.env :refer [get-trailing-bars]]
    [algodemo.sma-crossover.algo :refer [sma-crossover-algo]]))
@@ -16,12 +16,16 @@
           :sma-st 20
           :sma-lt 200}
    :backtest {:formula [:algo]
-              :fn backtest
-              ; position management
-              :entry [:fixed-amount 100000]
-              :exit [:loss-percent 2.0
-                     :profit-percent 1.0
-                     :time 5]}})
+              :fn b2/backtest
+              :portfolio {:fee 0.05 ; per trade in percent
+                          :equity-initial 10000.0}
+              :entry {:type :fixed-amount :fixed-amount 20000.0}
+              :exit [;{:type :trailing-stop-offset :col :atr}
+                     ;{:type :trailing-profit-level :col-long :b1-mid :col-short :b1-mid}
+                     {:type :stop-prct :prct 5.0}
+                     {:type :profit-prct :prct 8.0}
+                     {:type :time :max-bars 50}]
+              :trail-m 2.0}})
 
 (def crossover-options
   [{:type :select
